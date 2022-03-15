@@ -13,37 +13,37 @@
 import { JsxElement } from "typescript";
 
 interface BoxPropsInterface {
-  key?: string;
-  id: string;
-  width: number;
-  height: number;
-  backgroundColor: string;
-  remove: (id: string) => void; 
+    key?: string;
+    id: string;
+    width: string;
+    height: string;
+    backgroundColor: string;
+    remove: (id: string) => void;
 }
 
-function Box({ id, width = 5, height = 5, backgroundColor, remove }: BoxPropsInterface): JsxElement {
+function Box({ id, width = '5', height = '5', backgroundColor, remove }: BoxPropsInterface) {
 
-  /** Remove a box. */
-  function handleRemove(): void {
-    remove(id);
-  }
+    /** Remove a box. */
+    function handleRemove(): void {
+        remove(id);
+    }
 
-  return (
-    <div className="Box">
-      <div className="Box-box"
-        style={{
-          height: `${height}em`,
-          width: `${width}em`,
-          backgroundColor: backgroundColor
-        }}
-      />
-      <button
-        className="Box-removeBtn"
-        onClick={handleRemove}>
-        Remove The Box!
-      </button>
-    </div>
-  );
+    return (
+        <div className="Box">
+            <div className="Box-box"
+                style={{
+                    height: `${height}em`,
+                    width: `${width}em`,
+                    backgroundColor: backgroundColor
+                }}
+            />
+            <button
+                className="Box-removeBtn"
+                onClick={handleRemove}>
+                Remove The Box!
+            </button>
+        </div>
+    );
 }
 
 export default Box;

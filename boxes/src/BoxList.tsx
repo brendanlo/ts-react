@@ -10,40 +10,40 @@ import NewBoxForm from "./NewBoxForm";
  */
 
 interface BoxInterface {
-  id: string;
-  width: number;
-  height: number;
-  backgroundColor: string;
+    id: string;
+    width: string;
+    height: string;
+    backgroundColor: string;
 }
 
 function BoxList() {
-  const [boxes, setBoxes] = useState<BoxInterface[]>([])
+    const [boxes, setBoxes] = useState<BoxInterface[]>([])
 
-  /** add box with given { id, width, height, backgroundColor } */
-  function add(newBox: BoxInterface): void {
-    setBoxes(boxes => [...boxes, newBox]);
-  }
+    /** add box with given { id, width, height, backgroundColor } */
+    function add(newBox: BoxInterface): void {
+        setBoxes(boxes => [...boxes, newBox]);
+    }
 
-  /** remove box matching that id. */
-  function remove(id: string): void {
-    setBoxes(boxes => boxes.filter((box: BoxInterface) => box.id !== id));
-  }
+    /** remove box matching that id. */
+    function remove(id: string): void {
+        setBoxes(boxes => boxes.filter((box: BoxInterface) => box.id !== id));
+    }
 
-  return (
-    <div>
-      <NewBoxForm createBox={add} />
-      {boxes.map(({ id, width, height, backgroundColor }: BoxInterface): JsxElement => (
-        <Box
-          key={id}
-          id={id}
-          width={width}
-          height={height}
-          remove={remove}
-          backgroundColor={backgroundColor}
-        />
-      ))}
-    </div>
-  );
+    return (
+        <div>
+            <NewBoxForm createBox={add} />
+            {boxes.map(({ id, width, height, backgroundColor }: BoxInterface) => (
+                <Box
+                    key={id}
+                    id={id}
+                    width={width}
+                    height={height}
+                    remove={remove}
+                    backgroundColor={backgroundColor}
+                />
+            ))}
+        </div>
+    );
 }
 
 export default BoxList;
