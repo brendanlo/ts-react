@@ -1,6 +1,7 @@
+import { JsxElement } from "typescript";
 import BoxList from "./BoxList";
 
-function App() {
+function App(): JsxElement {
   return (
     <div>
       <BoxList />

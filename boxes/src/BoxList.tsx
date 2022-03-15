@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { JsxAttributeLike, JsxElement } from "typescript";
 import Box from "./Box";
 import NewBoxForm from "./NewBoxForm";
 
@@ -8,23 +9,30 @@ import NewBoxForm from "./NewBoxForm";
  * - boxes: [ { id, width, height, backgroundColor }, ... ]
  */
 
+interface BoxInterface {
+  id: string;
+  width: number;
+  height: number;
+  backgroundColor: string;
+}
+
 function BoxList() {
-  const [boxes, setBoxes] = useState([])
+  const [boxes, setBoxes] = useState<BoxInterface[]>([])
 
   /** add box with given { id, width, height, backgroundColor } */
-  function add(newBox) {
+  function add(newBox: BoxInterface): void {
     setBoxes(boxes => [...boxes, newBox]);
   }
 
   /** remove box matching that id. */
-  function remove(id: string) {
-    setBoxes(boxes => boxes.filter(box => box.id !== id));
+  function remove(id: string): void {
+    setBoxes(boxes => boxes.filter((box: BoxInterface) => box.id !== id));
   }
 
   return (
     <div>
       <NewBoxForm createBox={add} />
-      {boxes.map(({ id, width, height, backgroundColor }) => (
+      {boxes.map(({ id, width, height, backgroundColor }: BoxInterface): JsxElement => (
         <Box
           key={id}
           id={id}
